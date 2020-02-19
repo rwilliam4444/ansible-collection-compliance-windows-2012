@@ -1,0 +1,442 @@
+---
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Adobe\\*\\Reader\\AcroRd32.exe' setting (18.9.22.5)"
+   check_against: "{{ AcroRd32_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Adobe\*\Reader\AcroRd32.exe"|Select-Object
+     -ExpandProperty "*\Adobe\*\Reader\AcroRd32.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Adobe\\*\\Reader\\AcroRd32.exe"
+    data: "+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Adobe\\Acrobat*\\Acrobat\\Acrobat.exe' setting (18.9.22.5)"
+   check_against: "{{ Acrobat_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Adobe\Acrobat*\Acrobat\Acrobat.exe" | Select-Object
+     -ExpandProperty "*\Adobe\Acrobat*\Acrobat\Acrobat.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Adobe\\Acrobat*\\Acrobat\\Acrobat.exe"
+    data: "+EAF+ eaf_modules:AcroRd32.dll;Acrofx32.dll;AcroForm.api"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Java\\jre*\\bin\\java.exe' setting (18.9.22.5)"
+   check_against: "{{ java_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Java\jre*\bin\java.exe" | Select-Object
+     -ExpandProperty "*\Java\jre*\bin\java.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Java\\jre*\\bin\\java.exe"
+    data: "-HeapSpray"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Java\\jre*\\bin\\javaw.exe' setting (18.9.22.5)"
+   check_against: "{{ javaw_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Java\jre*\bin\javaw.exe" | Select-Object
+     -ExpandProperty "*\Java\jre*\bin\javaw.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Java\\jre*\\bin\\javaw.exe"
+    data: "-HeapSpray"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Java\\jre*\\bin\\javaws.exe' setting (18.9.22.5)"
+   check_against: "{{ javaws_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Java\jre*\bin\javaws.exe" | Select-Object
+     -ExpandProperty "*\Java\jre*\bin\javaws.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Java\\jre*\\bin\\javaws.exe"
+    data: "-HeapSpray"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\EXCEL.EXE' setting (18.9.22.5)"
+   check_against: "{{ EXCEL_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\EXCEL.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\EXCEL.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\EXCEL.EXE"
+    data: "+ASR asr_modules:flash*.ocx"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\INFOPATH.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\INFOPATH.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\INFOPATH.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\INFOPATH.EXE' sttng (18.9.22.5)"
+   check_against: "{{ INFOPATH_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\INFOPATH.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\INFOPATH.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\INFOPATH.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\LYNC.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\LYNC.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\LYNC.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\LYNC.EXE' sttng (18.9.22.5)"
+   check_against: "{{ LYNC_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\LYNC.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\LYNC.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\LYNC.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\MSACCESS.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\MSACCESS.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\MSACCESS.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\MSACCESS.EXE' sttng (18.9.22.5)"
+   check_against: "{{ MSACCESS_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\MSACCESS.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\MSACCESS.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\MSACCESS.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\MSPUB.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\MSPUB.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\MSPUB.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\MSPUB.EXE' sttng (18.9.22.5)"
+   check_against: "{{ MSPUB_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\MSPUB.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\MSPUB.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\MSPUB.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\OIS.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\OIS.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\OIS.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\OIS.EXE' sttng (18.9.22.5)"
+   check_against: "{{ OIS_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\OIS.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\OIS.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\OIS.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\OUTLOOK.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\OUTLOOK.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\OUTLOOK.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\OUTLOOK.EXE' sttng (18.9.22.5)"
+   check_against: "{{ OUTLOOK_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\OUTLOOK.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\OUTLOOK.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\OUTLOOK.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\POWERPNT.EXE' setting (18.9.22.5)"
+   check_against: "{{ POWERPNT_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\POWERPNT.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\POWERPNT.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\POWERPNT.EXE"
+    data: "+ASR asr_modules:flash*.ocx"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\PPTVIEW.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\PPTVIEW.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\PPTVIEW.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\PPTVIEW.EXE' sttng (18.9.22.5)"
+   check_against: "{{ PPTVIEW_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\PPTVIEW.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\PPTVIEW.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\PPTVIEW.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\VISIO.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\VISIO.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\VISIO.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\VISIO.EXE' sttng (18.9.22.5)"
+   check_against: "{{ VISIO_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\VISIO.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\VISIO.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\VISIO.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\VPREVIEW.EXE"|Select-Object
+    -ExpandProperty "*\OFFICE1*\VPREVIEW.EXE")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\OFFICE1*\VPREVIEW.EXE" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\VPREVIEW.EXE' sttng (18.9.22.5)"
+   check_against: "{{ VPREVIEW_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\VPREVIEW.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\VPREVIEW.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\VPREVIEW.EXE"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1) 'Default Protections for Recommended Software=enabled.'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\OFFICE1*\\WINWORD.EXE' setting (18.9.22.5)"
+   check_against: "{{ WINWORD_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\OFFICE1*\WINWORD.EXE" | Select-Object
+     -ExpandProperty "*\OFFICE1*\WINWORD.EXE"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\OFFICE1*\\WINWORD.EXE"
+    data: "+ASR asr_modules:flash*.ocx"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.5 (L1)'Default Protections for Recommended Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows NT\Accessories\wordpad.exe"|Select-Object
+    -ExpandProperty "*\Windows NT\Accessories\wordpad.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows NT\Accessories\wordpad.exe" -value ""}
+
+
+- name: "18.9.22.5 (L1)'Default Protections for Popular Recommended'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Windows NT\\Accessories\\wordpad.exe' sttng (18.9.22.5)"
+   check_against: "{{ wordpad_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Windows NT\Accessories\wordpad.exe" | Select-Object
+     -ExpandProperty "*\Windows NT\Accessories\wordpad.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Windows NT\\Accessories\\wordpad.exe"
+    data: ""
+    type: string

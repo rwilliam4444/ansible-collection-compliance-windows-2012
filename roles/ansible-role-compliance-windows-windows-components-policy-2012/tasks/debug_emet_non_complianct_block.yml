@@ -1,0 +1,12 @@
+---
+- block:
+   - debug:
+      msg:
+       - "The FQDN hostname is.............{{ FQDN_hostname }}"
+       - "The default_ipv4_address is......{{ default_ipv4_address }}"
+       - ""
+       - "{{ title }} is Non-Compliant:"
+       - "{{ emet_check_out }}"
+       - "There is a dependency for this setting - i.e. refer to 18.9.22.1"
+       - "The following app (version 5.5 or higher) should be installed first:"
+       - "EMET 5.5 or higher"

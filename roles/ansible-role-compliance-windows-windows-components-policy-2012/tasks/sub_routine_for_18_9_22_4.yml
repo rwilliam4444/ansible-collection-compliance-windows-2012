@@ -1,0 +1,939 @@
+---
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\7-Zip\\7z.exe' setting (18.9.22.4)"
+   check_against: "{{ app7z_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\7-Zip\7z.exe"|Select-Object
+     -ExpandProperty "*\7-Zip\7z.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\7-Zip\\7z.exe"
+    data: "-EAF"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\7-Zip\\7zG.exe' setting (18.9.22.4)"
+   check_against: "{{ app7zG_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\7-Zip\7zG.exe"|Select-Object
+     -ExpandProperty "*\7-Zip\7zG.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\7-Zip\\7zG.exe"
+    data: "-EAF"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\7-Zip\\7zFM.exe' setting (18.9.22.4)"
+   check_against: "{{ app7zFM_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\7-Zip\7zFM.exe"|Select-Object
+     -ExpandProperty "*\7-Zip\7zFM.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\7-Zip\\7zFM.exe"
+    data: "-EAF"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Adobe\Adobe Photoshop CS*\Photoshop.exe"|Select-Object
+    -ExpandProperty "*\Adobe\Adobe Photoshop CS*\Photoshop.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there";set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Adobe\Adobe Photoshop CS*\Photoshop.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Adobe\\Adobe Photoshop CS*\\Photoshop.exe' sttng (18.9.22.4)"
+   check_against: "{{ appPhotoshop_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Adobe\Adobe Photoshop CS*\Photoshop.exe" | Select-Object
+     -ExpandProperty "*\Adobe\Adobe Photoshop CS*\Photoshop.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Adobe\\Adobe Photoshop CS*\\Photoshop.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Foxit Reader\Foxit Reader.exe" | Select-Object
+    -ExpandProperty "*\Foxit Reader\Foxit Reader.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Foxit Reader\Foxit Reader.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Foxit Reader\\Foxit Reader.exe' setting (18.9.22.4)"
+   check_against: "{{ Foxit_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Foxit Reader\Foxit Reader.exe"|Select-Object
+     -ExpandProperty "*\Foxit Reader\Foxit Reader.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Foxit Reader\\Foxit Reader.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Google\\Chrome\\Application\\chrome.exe' setting (18.9.22.4)"
+   check_against: "{{ chrome_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Google\Chrome\Application\chrome.exe"|Select-Object
+     -ExpandProperty "*\Google\Chrome\Application\chrome.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Google\\Chrome\\Application\\chrome.exe"
+    data: "+EAF+ eaf_modules:chrome_child.dll"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Google\\Google Talk\\googletalk.exe' setting (18.9.22.4)"
+   check_against: "{{ googletalk_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Google\Google Talk\googletalk.exe"|Select-Object
+     -ExpandProperty "*\Google\Google Talk\googletalk.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Google\\Google Talk\\googletalk.exe"
+    data: "-DEP"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\iTunes\iTunes.exe" | Select-Object
+    -ExpandProperty "*\iTunes\iTunes.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\iTunes\iTunes.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\iTunes\\iTunes.exe setting' (18.9.22.4)"
+   check_against: "{{ itunes_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\iTunes\iTunes.exe" | Select-Object
+     -ExpandProperty "*\iTunes\iTunes.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\iTunes\\iTunes.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Microsoft Lync\communicator.exe" | Select-Object
+    -ExpandProperty "*\Microsoft Lync\communicator.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Microsoft Lync\communicator.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Microsoft Lync\\communicator.exe' setting (18.9.22.4)"
+   check_against: "{{ communicator_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Microsoft Lync\communicator.exe" | Select-Object
+     -ExpandProperty "*\Microsoft Lync\communicator.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Microsoft Lync\\communicator.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\mIRC\mirc.exe" | Select-Object
+    -ExpandProperty "*\mIRC\mirc.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\mIRC\mirc.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\mIRC\\mirc.exe' setting (18.9.22.4)"
+   check_against: "{{ mirc_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\mIRC\mirc.exe" | Select-Object
+     -ExpandProperty "*\mIRC\mirc.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\mIRC\\mirc.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Mozilla Firefox\\firefox.exe' setting (18.9.22.4)"
+   check_against: "{{ firefox_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Mozilla Firefox\firefox.exe" | Select-Object
+     -ExpandProperty "*\Mozilla Firefox\firefox.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Mozilla Firefox\\firefox.exe"
+    data: "+EAF+ eaf_modules:mozjs.dll;xul.dll"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Firefox\plugin-container.exe" | Select-Object
+    -ExpandProperty "*\Mozilla Firefox\plugin-container.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Firefox\plugin-container.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Mozilla Firefox\\plugin-container.exe' setting (18.9.22.4)"
+   check_against: "{{ plugin_container_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Mozilla Firefox\plugin-container.exe" | Select-Object
+     -ExpandProperty "*\Mozilla Firefox\plugin-container.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Mozilla Firefox\\plugin-container.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Thunderbird\plugin-container.exe" | Select-Object
+    -ExpandProperty "*\Mozilla Thunderbird\plugin-container.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Thunderbird\plugin-container.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: >
+     The '*\Mozilla Thunderbird\plugin-container.exe' setting (18.9.22.4)
+   check_against: "{{ plugin_container_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Mozilla Thunderbird\plugin-container.exe" | Select-Object
+     -ExpandProperty "*\Mozilla Thunderbird\plugin-container.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Mozilla Thunderbird\\plugin-container.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Thunderbird\thunderbird.exe" | Select-Object
+    -ExpandProperty "*\Mozilla Thunderbird\thunderbird.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Mozilla Thunderbird\thunderbird.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Mozilla Thunderbird\\thunderbird.exe' setting (18.9.22.4)"
+   check_against: "{{ thunderbird_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Mozilla Thunderbird\thunderbird.exe" | Select-Object
+     -ExpandProperty "*\Mozilla Thunderbird\thunderbird.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Mozilla Thunderbird\\thunderbird.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Opera\*\opera.exe" | Select-Object
+    -ExpandProperty "*\Opera\*\opera.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Opera\*\opera.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Opera\\*\\opera.exe' setting (18.9.22.4)"
+   check_against: "{{ opera_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Opera\*\opera.exe" | Select-Object
+     -ExpandProperty "*\Opera\*\opera.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Opera\\*\\opera.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Opera\opera.exe" | Select-Object
+    -ExpandProperty "*\Opera\opera.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Opera\opera.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Opera\\opera.exe' setting (18.9.22.4)"
+   check_against: "{{ opera_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Opera\opera.exe" | Select-Object
+     -ExpandProperty "*\Opera\opera.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Opera\\opera.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Pidgin\pidgin.exe" | Select-Object
+    -ExpandProperty "*\Pidgin\pidgin.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Pidgin\pidgin.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Pidgin\\pidgin.exe' setting (18.9.22.4)"
+   check_against: "{{ pidgin_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Pidgin\pidgin.exe" | Select-Object
+     -ExpandProperty "*\Pidgin\pidgin.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Pidgin\\pidgin.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\QuickTime\QuickTimePlayer.exe" | Select-Object
+    -ExpandProperty "*\QuickTime\QuickTimePlayer.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\QuickTime\QuickTimePlayer.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\QuickTime\\QuickTimePlayer.exe' setting (18.9.22.4)"
+   check_against: "{{ QuickTimePlayer_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\QuickTime\QuickTimePlayer.exe" | Select-Object
+     -ExpandProperty "*\QuickTime\QuickTimePlayer.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\QuickTime\\QuickTimePlayer.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Real\RealPlayer\realconverter.exe" | Select-Object
+    -ExpandProperty "*\Real\RealPlayer\realconverter.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Real\RealPlayer\realconverter.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Real\\RealPlayer\realconverter.exe' setting (18.9.22.4)"
+   check_against: "{{ realconverter_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Real\RealPlayer\realconverter.exe" | Select-Object
+     -ExpandProperty "*\Real\RealPlayer\realconverter.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Real\\RealPlayer\realconverter.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Real\RealPlayer\realplay.exe" | Select-Object
+    -ExpandProperty "*\Real\RealPlayer\realplay.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Real\RealPlayer\realplay.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Real\\RealPlayer\\realplay.exe' setting (18.9.22.4)"
+   check_against: "{{ realplay_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Real\RealPlayer\realplay.exe" | Select-Object
+     -ExpandProperty "*\Real\RealPlayer\realplay.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Real\\RealPlayer\\realplay.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Safari\Safari.exe" | Select-Object
+    -ExpandProperty "*\Safari\Safari.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Safari\Safari.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Safari\\Safari.exe' setting (18.9.22.4)"
+   check_against: "{{ Safari_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Safari\Safari.exe" | Select-Object
+     -ExpandProperty "*\Safari\Safari.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Safari\\Safari.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\SkyDrive\SkyDrive.exe" | Select-Object
+    -ExpandProperty "*\SkyDrive\SkyDrive.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\SkyDrive\SkyDrive.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\SkyDrive\\SkyDrive.exe' setting (18.9.22.4)"
+   check_against: "{{ SkyDrive_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\SkyDrive\SkyDrive.exe" | Select-Object
+     -ExpandProperty "*\SkyDrive\SkyDrive.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\SkyDrive\\SkyDrive.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Skype\Phone\Skype.exe" | Select-Object
+    -ExpandProperty "*\Skype\Phone\Skype.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Skype\Phone\Skype.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Skype\\Phone\\Skype.exe' setting (18.9.22.4)"
+   check_against: "{{ Skype_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Skype\Phone\Skype.exe" | Select-Object
+     -ExpandProperty "*\Skype\Phone\Skype.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Skype\\Phone\\Skype.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\VideoLAN\VLC\vlc.exe" | Select-Object
+    -ExpandProperty "*\VideoLAN\VLC\vlc.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\VideoLAN\VLC\vlc.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\VideoLAN\\VLC\\vlc.exe' setting (18.9.22.4)"
+   check_against: "{{ vlc_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\VideoLAN\VLC\vlc.exe" | Select-Object
+     -ExpandProperty "*\VideoLAN\VLC\vlc.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\VideoLAN\\VLC\\vlc.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Winamp\winamp.exe" | Select-Object
+    -ExpandProperty "*\Winamp\winamp.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Winamp\winamp.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Winamp\\winamp.exe' setting (18.9.22.4)"
+   check_against: "{{ winamp_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Winamp\winamp.exe" | Select-Object
+     -ExpandProperty "*\Winamp\winamp.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Winamp\\winamp.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Mail\wlmail.exe" | Select-Object
+    -ExpandProperty "*\Windows Live\Mail\wlmail.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Mail\wlmail.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Windows Live\\Mail\\wlmail.exe' setting (18.9.22.4)"
+   check_against: "{{ wlmail_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Windows Live\Mail\wlmail.exe" | Select-Object
+     -ExpandProperty "*\Windows Live\Mail\wlmail.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Windows Live\\Mail\\wlmail.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Photo Gallery\WLXPhotoGallery.exe" | Select-Object
+    -ExpandProperty "*\Windows Live\Photo Gallery\WLXPhotoGallery.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Photo Gallery\WLXPhotoGallery.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: >
+     The '*\Windows Live\Photo Gallery\WLXPhotoGallery.exe' setting (18.9.22.4)
+   check_against: "{{ WLXPhotoGallery_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Windows Live\Photo Gallery\WLXPhotoGallery.exe" | Select-Object
+     -ExpandProperty "*\Windows Live\Photo Gallery\WLXPhotoGallery.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Windows Live\\Photo Gallery\\WLXPhotoGallery.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Writer\WindowsLiveWriter.exe" | Select-Object
+    -ExpandProperty "*\Windows Live\Writer\WindowsLiveWriter.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\Windows Live\Writer\WindowsLiveWriter.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: >
+     The '*\Windows Live\Writer\WindowsLiveWriter.exe' setting (18.9.22.4)
+   check_against: "{{ WindowsLiveWriter_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Windows Live\Writer\WindowsLiveWriter.exe" | Select-Object
+     -ExpandProperty "*\Windows Live\Writer\WindowsLiveWriter.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Windows Live\\Writer\\WindowsLiveWriter.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\Windows Media Player\\wmplayer.exe' setting (18.9.22.4)"
+   check_against: "{{ wmplayer_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\Windows Media Player\wmplayer.exe" | Select-Object
+     -ExpandProperty "*\Windows Media Player\wmplayer.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\Windows Media Player\\wmplayer.exe"
+    data: "-EAF -MandatoryASLR"
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\rar.exe" | Select-Object
+    -ExpandProperty "*\WinRAR\rar.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\rar.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\WinRAR\\rar.exe' setting (18.9.22.4)"
+   check_against: "{{ rar_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\WinRAR\rar.exe" | Select-Object
+     -ExpandProperty "*\WinRAR\rar.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\WinRAR\\rar.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\unrar.exe" | Select-Object
+    -ExpandProperty "*\WinRAR\unrar.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\unrar.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\WinRAR\\unrar.exe' setting (18.9.22.4)"
+   check_against: "{{ unrar_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\WinRAR\unrar.exe" | Select-Object
+     -ExpandProperty "*\WinRAR\unrar.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\WinRAR\\unrar.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\winrar.exe" | Select-Object
+    -ExpandProperty "*\WinRAR\winrar.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinRAR\winrar.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\WinRAR\\winrar.exe' setting (18.9.22.4)"
+   check_against: "{{ winrar_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\WinRAR\winrar.exe" | Select-Object
+     -ExpandProperty "*\WinRAR\winrar.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\WinRAR\\winrar.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinZip\winzip32.exe" | Select-Object
+    -ExpandProperty "*\WinZip\winzip32.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinZip\winzip32.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\WinZip\\winzip32.exe' setting (18.9.22.4)"
+   check_against: "{{ winzip32_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\WinZip\winzip32.exe" | Select-Object
+     -ExpandProperty "*\WinZip\winzip32.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\WinZip\\winzip32.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  win_shell: >
+    if (Get-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinZip\winzip64.exe" | Select-Object
+    -ExpandProperty "*\WinZip\winzip64.exe")
+    {echo "registry setting there"} else
+    {echo "registry setting NOT there"; set-ItemProperty -path
+    "HKLM:\Software\Policies\Microsoft\EMET\Defaults\"
+    -name "*\WinZip\winzip64.exe" -value ""}
+
+
+- name: "18.9.22.4 (L1) 'Default Protections for Popular Software'='Enabled'"
+  include_tasks: win_check.yml
+  vars:
+   title: "The '*\\WinZip\\winzip64.exe' setting (18.9.22.4)"
+   check_against: "{{ winzip64_cis }}"
+   win_shell_cmd: >
+     Get-ItemProperty -path
+     "HKLM:\Software\Policies\Microsoft\EMET\Defaults\" -name
+     "*\WinZip\winzip64.exe" | Select-Object
+     -ExpandProperty "*\WinZip\winzip64.exe"
+   win_regedit_cmd:
+    path: HKLM:\Software\Policies\Microsoft\EMET\Defaults
+    name: "*\\WinZip\\winzip64.exe"
+    data: ""
+    type: string
+
+# -------------------------------------------------------------------------
